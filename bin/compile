@@ -34,7 +34,7 @@ fi
 # install addons
 cd $BUILD_DIR
 fetch_shlink_dist "${TMP_PATH}" "v${SHLINK_VERSION}"
-mv ${TMP_PATH}/cal.com-${SHLINK_VERSION}/* "${BUILD_DIR}"
+mv ${TMP_PATH}/shlink-${SHLINK_VERSION}/* "${BUILD_DIR}"
 rm -rf $TMP_PATH
 echo "scalingo-shlink-buildpack"
 
