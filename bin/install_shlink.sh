@@ -12,7 +12,7 @@ function fetch_shlink_dist() {
     local dist="shlink"
     
     # local dist_url="https://github.com/shlinkio/shlink/archive/refs/tags/${version}.tar.gz"
-    local dist_url="https://github.com/shlinkio/shlink/releases/download/${version}/shlink${version}_php8.1_dist.zip"
+    local dist_url="https://github.com/shlinkio/shlink/releases/download/v${version}/shlink${version}_php8.1_dist.zip"
     echo "${dist_url}"
     if [ -f "${CACHE_DIR}/dist/${dist}" ]; then
         echo "File is already downloaded"
