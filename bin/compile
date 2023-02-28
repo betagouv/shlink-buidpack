@@ -15,6 +15,21 @@ set -u
 
 echo "=====> Start Shlink"
 
+EXPECTED_CHECKSUM="$(php -r 'copy("https://composer.github.io/installer.sig", "php://stdout");')"
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+ACTUAL_CHECKSUM="$(php -r "echo hash_file('sha384', 'composer-setup.php');")"
+
+if [ "$EXPECTED_CHECKSUM" != "$ACTUAL_CHECKSUM" ]
+then
+    >&2 echo 'ERROR: Invalid installer checksum'
+    rm composer-setup.php
+    exit 1
+fi
+
+php composer-setup.php --quiet
+RESULT=$?
+rm composer-setup.php
+
 BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
@@ -33,13 +48,14 @@ fi
 
 # install addons
 cd $BUILD_DIR
-fetch_shlink_dist "${TMP_PATH}" "${SHLINK_VERSION}"
-mv ${TMP_PATH}/shlink${SHLINK_VERSION}_php8.1_dist/* "${BUILD_DIR}"
+fetch_shlink_dist "${TMP_PATH}" "v${SHLINK_VERSION}"
+mv ${TMP_PATH}/shlink-${SHLINK_VERSION}/* "${BUILD_DIR}"
 rm -rf $TMP_PATH
+./build.sh ${SHLINK_VERSION}
 echo "scalingo-shlink-buildpack"
 
-cp $BP_DIR/.buildpacks $BUILD_DIR/.buildpacks
-cp $BP_DIR/scalingo.json $BUILD_DIR/scalingo.json
+# cp $BP_DIR/.buildpacks $BUILD_DIR/.buildpacks
+# cp $BP_DIR/scalingo.json $BUILD_DIR/scalingo.json
 # Use architecture of multi-buildpack to compose behavior.
 # https://github.com/Scalingo/multi-buildpack
 
