@@ -10,7 +10,7 @@ function fetch_shlink_dist() {
     local version="$2"
     echo "Shlink backend installed"
     local dist="shlink"
-    local dist_url="https://github.com/shlinkio/shlink/archive/refs/tags/v${version}.tar.gz"
+    local dist_url="https://github.com/shlinkio/shlink/archive/refs/tags/${version}.tar.gz"
     echo "${dist_url}"
     if [ -f "${CACHE_DIR}/dist/${dist}" ]; then
         echo "File is already downloaded"
