@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# Always accept the Keycloak buildpack
+echo "Shlink"
+exit 0
