@@ -36,7 +36,7 @@ cd $BUILD_DIR
 fetch_shlink_dist "${TMP_PATH}" "v${SHLINK_VERSION}"
 mv ${TMP_PATH}/shlink-${SHLINK_VERSION}/* "${BUILD_DIR}"
 rm -rf $TMP_PATH
-./build.sh ${SHLINK_VERSION}
+# ./build.sh ${SHLINK_VERSION}
 echo "scalingo-shlink-buildpack"
 
 cp $BP_DIR/.buildpacks $BUILD_DIR/.buildpacks
