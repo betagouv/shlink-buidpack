@@ -54,8 +54,9 @@ rm -rf $TMP_PATH
 ./build.sh ${SHLINK_VERSION}
 echo "scalingo-shlink-buildpack"
 
-# cp $BP_DIR/.buildpacks $BUILD_DIR/.buildpacks
-# cp $BP_DIR/scalingo.json $BUILD_DIR/scalingo.json
+cp $BP_DIR/.buildpacks $BUILD_DIR/.buildpacks
+cp $BP_DIR/scalingo.json $BUILD_DIR/scalingo.json
+cp $BP_DIR/composer.lock $BUILD_DIR/composer.lock
 # Use architecture of multi-buildpack to compose behavior.
 # https://github.com/Scalingo/multi-buildpack
 
